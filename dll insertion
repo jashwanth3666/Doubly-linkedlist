@@ -1,93 +1,39 @@
-class DoublyLinkedList {
-
-   
-    static class Node {
+public class DoublyLinkedList{
+    Node head;
+    class Node{
         int data;
-        Node prev, next;
-
-        Node(int data) {
-            this.data = data;
-            this.prev = null;
-            this.next = null;
-        }
-    }
-
-    private Node head;
-
-    public DoublyLinkedList() {
-        head = null;
-    }
-
+        Node next;
+        Node prev;
    
-    public void insertatstart(int data) {
-        Node newNode = new Node(data);
-        if (head == null) {
-            head = newNode;
-        } else {
-            newNode.next = head;
-            head.prev = newNode;
-            head = newNode;
-        }
+    Node(int data){
+        this.data=data;
+        next=null;
+        prev=null;
     }
-
-   
-    public void insertatend(int data) {
-        Node newNode = new Node(data);
-        if (head == null) {
-            head = newNode;
-        } else {
-            Node temp = head;
-            while (temp.next != null) {
-                temp = temp.next;
-            }
-            temp.next = newNode;
-            newNode.prev = temp;
-        }
     }
-
-    
-    public void insertAtPosition(int data, int position) {
-        
+    public void InsertBeg(int data){
         Node newNode = new Node(data);
-        Node temp = head;
-        for (int i = 1; i < position - 1; i++) {
-            if (temp == null) {
-                throw new IllegalArgumentException("Position exceeds the list length.");
-            }
-            temp = temp.next;
+        if(head!=null){
+            newNode.next=head;
+            head.prev=newNode;
         }
-        if (temp == null) {
-            throw new IllegalArgumentException("Position exceeds the list length.");
-        }
-        newNode.next = temp.next;
-        if (temp.next != null) {
-            temp.next.prev = newNode;
-        }
-        temp.next = newNode;
-        newNode.prev = temp;
+        head=newNode;
     }
-
-    
-    public void display() {
-        Node temp = head;
-        while (temp != null) {
-            System.out.print(temp.data + " ");
-            temp = temp.next;
+    public void printalltheNodes(){
+        Node temp;
+        temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
         }
         System.out.println();
     }
-}
-
-
-public class Main {
-    public static void main(String[] args) {
-        DoublyLinkedList dll = new DoublyLinkedList();
-
-        dll.insertatstart(10);
-        dll.insertatend(20);
-        dll.insertatposition(15, 2);
-        dll.insertatstart(5);
-
-        dll.display(); 
-    }
+        public static void main(String args[]){
+            DoublyLinkedList list=new DoublyLinkedList();
+            list.InsertBeg(100);
+            list.InsertBeg(200);
+            list.InsertBeg(300);
+       
+        list.printalltheNodes();
+        }
 }
